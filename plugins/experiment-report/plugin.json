@@ -1,0 +1,21 @@
+{
+  "name": "experiment-report",
+  "version": "0.1.0",
+  "description": "Integrated report generation and improvement from lab notebook results",
+  "skills": [
+    {
+      "name": "experiment-report",
+      "path": "SKILL.md"
+    }
+  ],
+  "commands": [
+    {
+      "name": "research-report",
+      "path": "commands/research-report.md"
+    },
+    {
+      "name": "research-refine",
+      "path": "commands/research-refine.md"
+    }
+  ]
+}
