@@ -1,0 +1,11 @@
+{
+  "name": "hypothesis-driven",
+  "version": "0.1.0",
+  "description": "Hypothesis refinement and validation after experiment execution",
+  "skills": [
+    {
+      "name": "hypothesis-driven",
+      "path": "SKILL.md"
+    }
+  ]
+}
