@@ -1,0 +1,17 @@
+{
+  "name": "lab-notebook",
+  "version": "0.1.0",
+  "description": "Lab notebook (Jupyter/Markdown) creation and management for individual experiments",
+  "skills": [
+    {
+      "name": "lab-notebook",
+      "path": "SKILL.md"
+    }
+  ],
+  "commands": [
+    {
+      "name": "research-exp",
+      "path": "commands/research-exp.md"
+    }
+  ]
+}
