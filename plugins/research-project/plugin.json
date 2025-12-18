@@ -1,0 +1,21 @@
+{
+  "name": "research-project",
+  "version": "0.1.0",
+  "description": "Project steering management with initialization, phase control, and best practices",
+  "skills": [
+    {
+      "name": "research-project",
+      "path": "SKILL.md"
+    }
+  ],
+  "commands": [
+    {
+      "name": "research-init",
+      "path": "commands/research-init.md"
+    },
+    {
+      "name": "research-status",
+      "path": "commands/research-status.md"
+    }
+  ]
+}
