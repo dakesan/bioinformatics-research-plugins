@@ -1,0 +1,36 @@
+{
+  "name": "bioinformatics-research",
+  "version": "0.1.0",
+  "owner": {
+    "name": "dakesan",
+    "url": "https://github.com/dakesan"
+  },
+  "description": "AI-first hypothesis-driven workflow plugins for reproducible bioinformatics research",
+  "plugins": [
+    {
+      "name": "research-project",
+      "source": "./plugins/research-project",
+      "description": "Project steering management with initialization, phase control, and best practices"
+    },
+    {
+      "name": "lab-notebook",
+      "source": "./plugins/lab-notebook",
+      "description": "Lab notebook (Jupyter/Markdown) creation and management for individual experiments"
+    },
+    {
+      "name": "hypothesis-driven",
+      "source": "./plugins/hypothesis-driven",
+      "description": "Hypothesis refinement and validation after experiment execution"
+    },
+    {
+      "name": "experiment-report",
+      "source": "./plugins/experiment-report",
+      "description": "Integrated report generation and improvement from lab notebook results"
+    },
+    {
+      "name": "inbox-processor",
+      "source": "./plugins/inbox-processor",
+      "description": "Classification and processing of user input files (memos, meeting notes)"
+    }
+  ]
+}
