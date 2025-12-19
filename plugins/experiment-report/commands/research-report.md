@@ -32,9 +32,9 @@ Before generating, verify with user:
 
 ## Workflow
 
-After checklist passes:
+After checklist passes (execute from project root):
 
-1. Run `scripts/init_report.py` to generate template with claim-evidence structure
+1. Run `init_report.py` to generate template with claim-evidence structure
 2. Fill in evidence tables for each finding
 3. Verify all paths exist (notebooks, figures)
 4. Complete quality gate checklists in template

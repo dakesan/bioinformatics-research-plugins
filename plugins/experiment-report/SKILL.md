@@ -15,7 +15,9 @@ Provides comprehensive report generation and refinement capabilities. Following 
 
 ### 1. Report Generation
 
-Create integrated reports from completed lab notebooks using `scripts/init_report.py`.
+Create integrated reports from completed lab notebooks using `init_report.py`.
+
+**Execution context**: All commands assume execution from **project root** (where STEERING.md is located).
 
 **When to use**: When ready to synthesize multiple experiments into a cohesive report.
 
@@ -49,7 +51,10 @@ Before running init_report.py, verify these requirements:
 #### Workflow
 
 1. Complete pre-generation checklist above
-2. Run init script: `python scripts/init_report.py --labnote [paths] --output notebook/report/`
+2. Run init script (from project root):
+   ```bash
+   python path/to/init_report.py --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
+   ```
 3. Script generates template with claim-evidence structure
 4. Fill in evidence tables for each finding (verify paths exist)
 5. Complete quality gate checklists in each section

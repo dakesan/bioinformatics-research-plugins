@@ -236,13 +236,14 @@ Each finding must have:
 
 ### C. Reproducibility Information
 
-**Report Generation**:
+**Report Generation** (from project root):
 ```bash
-# Generate report
-python scripts/init_report.py --labnote {labnote_paths_cmd} --output ./
+# Generate report (adjust path to init_report.py as needed)
+python path/to/init_report.py --labnote {labnote_paths_cmd} --output notebook/report/
 
-# Export to PDF
-pandoc {report_filename} -o report.pdf --pdf-engine=typst --template=assets/templates/report.typ
+# Export to PDF (from notebook/report/ directory)
+cd notebook/report/
+pandoc {report_filename} -o report.pdf --pdf-engine=typst
 ```
 
 **Data Availability**:

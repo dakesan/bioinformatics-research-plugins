@@ -21,9 +21,9 @@ The `experiment-report` plugin handles both report generation (mechanical extrac
 
 Generate new integrated report from lab notebooks.
 
-**Workflow**:
+**Workflow** (execute from project root):
 1. Specify lab notebooks to include
-2. Run `scripts/init_report.py` to extract content
+2. Run `init_report.py` to extract content
 3. Apply mapping rules (`references/mapping-rules.md`)
 4. Generate template with placeholders
 5. AI fills in synthesis sections
