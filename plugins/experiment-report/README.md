@@ -167,10 +167,18 @@ Following research-project quality-standards.md:
 
 ### When to Generate Reports
 
-- Multiple related experiments complete
-- Project milestone reached
+**IMPORTANT**: Report generation is designed for **after all experiments are complete**.
+- Create reports to **integrate findings** from multiple related experiments
+- Synthesize results across Exp01, Exp02, Exp03, etc. into a cohesive narrative
+- Use when project milestone reached (e.g., end of Execution phase)
 - Preparing for presentation/manuscript
 - Need formal documentation
+
+**Workflow**:
+1. Complete all planned experiments (Exp01-ExpN)
+2. Each experiment has saved figures to `results/` directory
+3. Run `/research-report` to integrate all experiments
+4. Report references all saved figures from individual experiments
 
 ### Before Generation
 

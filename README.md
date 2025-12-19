@@ -89,20 +89,27 @@ Classification and processing of user input files.
    /research-init
    ```
 
-2. **Create lab notebook**:
+2. **Create lab notebooks** (for each experiment):
    ```
-   /research-exp
+   /research-exp  # Create Exp01
+   # Run experiment, save figures to results/
+   /research-exp  # Create Exp02
+   # Run experiment, save figures to results/
+   /research-exp  # Create Exp03
+   # Run experiment, save figures to results/
    ```
 
-3. **Generate report**:
+3. **Generate integrated report** (after all experiments complete):
    ```
-   /research-report
+   /research-report  # Synthesize Exp01-03 into one report
    ```
 
 4. **Refine report**:
    ```
    /research-refine
    ```
+
+**Key principle**: Reports integrate findings across **multiple completed experiments**, referencing all saved figures from `results/` directory.
 
 ## Project Structure
 

@@ -123,10 +123,14 @@ LABNOTE_JUPYTER_TEMPLATE = """{
     "import pandas as pd\\n",
     "import numpy as np\\n",
     "import matplotlib.pyplot as plt\\n",
+    "from pathlib import Path\\n",
     "\\n",
     "# Configuration\\n",
     "DATA_DIR = Path(\\"../data/raw\\")\\n",
-    "RESULTS_DIR = Path(\\"../results\\")"
+    "RESULTS_DIR = Path(\\"../results\\")\\n",
+    "\\n",
+    "# Ensure results directory exists\\n",
+    "RESULTS_DIR.mkdir(parents=True, exist_ok=True)"
    ]
   },
   {
@@ -143,7 +147,19 @@ LABNOTE_JUPYTER_TEMPLATE = """{
    "execution_count": null,
    "metadata": {},
    "source": [
-    "# Analysis code here"
+    "# Analysis code here\\n",
+    "\\n",
+    "# Example: Creating and saving a figure\\n",
+    "# fig, ax = plt.subplots(figsize=(8, 6))\\n",
+    "# ax.plot(x, y)\\n",
+    "# ax.set_xlabel('X label')\\n",
+    "# ax.set_ylabel('Y label')\\n",
+    "# ax.set_title('Plot title')\\n",
+    "# \\n",
+    "# # IMPORTANT: Save figure before showing\\n",
+    "# fig.savefig(RESULTS_DIR / 'exp00_example_plot.png', dpi=300, bbox_inches='tight')\\n",
+    "# fig.savefig(RESULTS_DIR / 'exp00_example_plot.pdf')  # Vector format for reports\\n",
+    "# plt.show()"
    ]
   },
   {

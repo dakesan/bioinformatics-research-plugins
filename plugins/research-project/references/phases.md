@@ -79,10 +79,16 @@ Research projects typically progress through distinct phases. Each phase has spe
 - Prepare documentation
 
 **Completion Criteria**:
-- At least one integrated report completed
-- Key findings clearly articulated
-- Supporting evidence organized
-- Limitations acknowledged
+- [ ] At least one integrated report completed
+- [ ] Key findings clearly articulated
+- [ ] Supporting evidence organized
+- [ ] Limitations acknowledged
+- [ ] **Report passes quality checklist** (see `references/quality-standards.md`):
+  - [ ] All claims linked to evidence (notebook/figure/table)
+  - [ ] Statistics complete (test name, n, effect size, p-value)
+  - [ ] Figures/tables have proper axes, units, legends, error bars
+  - [ ] Reproducibility block included (environment, dependencies, commands, data sources)
+  - [ ] Facts clearly separated from interpretation
 
 **Typical Duration**: 2-3 weeks
 

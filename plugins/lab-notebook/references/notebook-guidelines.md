@@ -209,6 +209,30 @@ Lab notebooks are the primary documentation of individual experiments. They shou
 - Define abbreviations in captions
 - Reference figures in text: "Differential expression results are shown in Figure 1"
 
+**Figure saving best practices** (critical for Jupyter notebooks):
+- **Always save figures to `results/` directory** before displaying
+- **Use descriptive filenames**: `exp##_[description].png` (e.g., `exp03_volcano_plot.png`)
+- **Save in multiple formats**: PNG (300 dpi) for notebooks, PDF/SVG for reports
+- **Reference saved figures** in markdown cells for future report generation
+- **Example code**:
+  ```python
+  # Create figure
+  fig, ax = plt.subplots(figsize=(8, 6))
+  ax.scatter(log2fc, -np.log10(pval))
+  ax.set_xlabel('Log2 Fold Change')
+  ax.set_ylabel('-Log10 P-value')
+
+  # Save before showing (critical for report generation)
+  fig.savefig('results/exp03_volcano_plot.png', dpi=300, bbox_inches='tight')
+  fig.savefig('results/exp03_volcano_plot.pdf')  # Vector format for publications
+  plt.show()
+  ```
+- **Then reference in markdown cell**:
+  ```markdown
+  ![Figure 1: Volcano plot](../../results/exp03_volcano_plot.png)
+  *Figure 1: Volcano plot of differential expression. Red points: adjusted p < 0.05.*
+  ```
+
 **Quality control**:
 Always include QC checks:
 - Sample size at each filtering step

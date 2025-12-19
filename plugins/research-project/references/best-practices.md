@@ -20,15 +20,20 @@ Good hypotheses are:
 
 **Maintain clear boundaries between observation and conclusion**
 
+> **Detailed specification**: See `references/quality-standards.md` for the complete
+> three-level framework (Facts → Interpretation → Conclusion) with examples and
+> quality checklist.
+
 Three levels of scientific statements:
 1. **Facts**: Direct observations (e.g., "Gene X expression was 2.3-fold higher")
 2. **Interpretation**: Reasoned explanation (e.g., "This suggests increased activity")
 3. **Conclusion**: Broader implications (e.g., "Gene X may regulate pathway Y")
 
 **In practice**:
-- Lab notebooks: Focus on facts and observations
-- Reports: Include interpretation with clear reasoning
+- Lab notebooks: Focus on facts and observations (Level 1)
+- Reports: Include interpretation with clear reasoning (Level 2)
 - Always label speculation as such
+- Use calibrated language for uncertainty (see `quality-standards.md`)
 
 ### 3. Document Everything
 
@@ -127,6 +132,50 @@ Directory structure:
 - `notebook/labnote/`: Individual experiments
 - `notebook/report/`: Integrated analyses
 
+### Figure Management
+
+**Save all figures with descriptive names for future reference**
+
+When running Jupyter notebooks or generating visualizations:
+
+1. **Save figures to `results/` directory**
+   ```python
+   # Good practice
+   fig.savefig('results/exp01_volcano_plot.png', dpi=300, bbox_inches='tight')
+   fig.savefig('results/exp01_volcano_plot.pdf')  # Also save as vector format
+   ```
+
+2. **Use descriptive filenames**
+   ```
+   Good: exp01_volcano_plot.png, exp02_survival_curve.png
+   Bad: figure1.png, plot.png, output.png
+   ```
+
+3. **Naming convention for figures**
+   ```
+   exp##_[figure-description].[ext]
+
+   Examples:
+   exp01_volcano_plot.png
+   exp02_heatmap_top100genes.png
+   exp03_survival_kaplan_meier.pdf
+   ```
+
+4. **Reference figures in notebooks**
+   ```markdown
+   ![Figure 1: Volcano plot](../../results/exp01_volcano_plot.png)
+   *Figure 1: Volcano plot showing differential expression...*
+   ```
+
+5. **Save both raster and vector formats**
+   - PNG for embedding in notebooks (300 dpi minimum)
+   - PDF/SVG for publications and reports
+
+6. **Version figures with experiments**
+   - Each experiment's figures should be clearly labeled (exp##_)
+   - Enables easy figure retrieval when creating reports
+   - Maintains figure-experiment traceability
+
 ### Version Control
 
 **Track changes systematically**
@@ -178,6 +227,148 @@ Format: `[Claim] (evidence: notebook/figure/table)`
 
 Example:
 - "Gene X expression increased 2.3-fold (Figure 2A, Exp03_rnaseq.ipynb)"
+
+---
+
+## Report Generation Workflow
+
+### Traceability: Claims to Evidence
+
+**Every claim must link to verifiable evidence**
+
+Report traceability structure:
+```
+Claim → Evidence Path → Figure/Table ID → Uncertainty Level → Open Issues
+```
+
+**Template for each finding in report**:
+
+```markdown
+### Finding: [Title]
+
+**Claim**: [Specific, quantitative statement]
+
+**Evidence**:
+| Type | ID | Path | Description |
+|------|-----|------|-------------|
+| Notebook | Exp01 | notebook/labnote/Exp01_analysis.ipynb | Primary analysis |
+| Figure | Fig1A | results/exp01_volcano.png | Volcano plot |
+| Table | Tab1 | results/exp01_deg_table.csv | DE gene list |
+
+**Uncertainty Level**: [High/Medium/Low]
+- Confidence basis: [Statistical significance, replication, etc.]
+- Known caveats: [Sample size, model limitations, etc.]
+
+**Open Issues**:
+- [ ] [Remaining question or validation needed]
+- [ ] [Follow-up experiment required]
+```
+
+### Claim-Evidence Mapping Checklist
+
+Before report submission, verify:
+
+- [ ] Every factual claim has an evidence path
+- [ ] All figures/tables are referenced by ID
+- [ ] Source notebooks are specified for each finding
+- [ ] Statistical values are complete (test name, n, effect size, p-value)
+- [ ] Uncertainty level is explicitly stated
+- [ ] Open issues are documented (not hidden)
+
+### Example: Complete Finding Block
+
+```markdown
+### Finding: Gene X Upregulation in Tumors
+
+**Claim**: Gene X expression is 2.3-fold higher in tumor samples compared
+to normal tissue (adjusted p < 0.001, n=1,100 tumors, n=113 normal).
+
+**Evidence**:
+| Type | ID | Path | Description |
+|------|-----|------|-------------|
+| Notebook | Exp03 | notebook/labnote/Exp03_differential_expression.ipynb | DESeq2 analysis |
+| Figure | Fig2A | results/exp03_volcano_plot.png | Volcano plot with Gene X highlighted |
+| Figure | Fig2B | results/exp03_genex_boxplot.png | Expression boxplot tumor vs normal |
+| Table | Tab2 | results/exp03_top50_genes.csv | Top 50 DE genes with statistics |
+
+**Uncertainty Level**: Medium
+- Confidence basis: Large sample size, adjusted p < 0.001
+- Known caveats: Cross-sectional design, bulk RNA-seq averages cell types
+
+**Open Issues**:
+- [ ] Validate with qPCR in independent cohort
+- [ ] Determine cell-type specificity with scRNA-seq
+```
+
+---
+
+## Reproducibility Requirements
+
+### Reproducibility Block
+
+**Required metadata for every report**
+
+Include a reproducibility block before submission:
+
+```markdown
+## Reproducibility Information
+
+### Environment
+- **OS**: [e.g., Ubuntu 22.04, macOS 14.0]
+- **Python**: [e.g., 3.10.8]
+- **R**: [e.g., 4.3.1] (if applicable)
+
+### Dependencies
+| Package | Version | Purpose |
+|---------|---------|---------|
+| pandas | 1.5.2 | Data manipulation |
+| numpy | 1.24.0 | Numerical operations |
+| matplotlib | 3.7.0 | Visualization |
+| DESeq2 | 1.38.0 | Differential expression |
+
+### Data Sources
+| Dataset | Version/Date | Source | Access |
+|---------|--------------|--------|--------|
+| TCGA-BRCA | 2024-01-15 | GDC Portal | Public |
+| Reference genome | GRCh38.p14 | NCBI | Public |
+
+### Random Seeds
+- Analysis: `random_state=42`
+- Train/test split: `seed=123`
+
+### Command History
+Key commands executed (in order):
+1. `python scripts/01_preprocess.py --input data/raw/counts.tsv`
+2. `python scripts/02_normalize.py --method deseq2`
+3. `python scripts/03_differential.py --comparison tumor_vs_normal`
+```
+
+### Pre-Submission Reproducibility Checklist
+
+Before finalizing report:
+
+- [ ] **Environment documented**: OS, Python/R version specified
+- [ ] **Dependencies listed**: All packages with exact versions
+- [ ] **Data sources specified**: Dataset name, version/date, access method
+- [ ] **Random seeds recorded**: All stochastic operations reproducible
+- [ ] **Command history preserved**: Key commands in execution order
+- [ ] **File paths verified**: All referenced files exist and are accessible
+- [ ] **Code committed**: All analysis code in version control with tag
+- [ ] **Results reproducible**: Re-running commands produces same output
+
+### Dependency Lock File
+
+For Python projects, generate dependency snapshot:
+
+```bash
+# Create exact dependency list
+uv pip freeze > requirements.lock.txt
+
+# Or with uv (recommended)
+uv lock
+```
+
+Include `requirements.lock.txt` or `uv.lock` in version control.
 
 ---
 

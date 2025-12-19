@@ -95,6 +95,49 @@ Provide research best practices from `references/best-practices.md` and `referen
 - **Fact/interpretation separation**: Keep observations separate from conclusions
 - **Progressive disclosure**: Structure information hierarchically
 
+### 5. Content Review
+
+**Proactively review user-created content against quality standards**
+
+**When to use**: When user presents:
+- Draft reports or conclusions
+- Lab notebook entries
+- Any scientific claims or findings
+
+**Action**: Review content against `references/quality-standards.md` checklist:
+
+1. **Fact vs. Interpretation Check**:
+   - Are observations (facts) clearly separated from interpretation?
+   - Are claims properly qualified with uncertainty level?
+   - Are conclusions supported by cited evidence?
+
+2. **Evidence Traceability Check**:
+   - Does each claim link to a notebook/figure/table?
+   - Are statistics complete (test name, n, effect size, p-value)?
+   - Are figure references valid and accessible?
+
+3. **Reproducibility Check**:
+   - Are methods detailed enough for replication?
+   - Are software/data versions specified?
+   - Are random seeds documented?
+
+**Output**: Provide constructive feedback with specific improvement suggestions.
+
+**Example feedback**:
+```markdown
+### Review Feedback
+
+**Fact/Interpretation Issues**:
+- Line 23: "Gene X regulates pathway Y" - This is interpretation, not fact.
+  Suggest: "Gene X expression correlated with pathway Y activity (r=0.85, p<0.01)"
+
+**Missing Evidence Links**:
+- Finding 2 has no figure reference. Add: "(Figure 2B, Exp03_analysis.ipynb)"
+
+**Statistics Incomplete**:
+- Effect size missing for differential expression claim. Add fold-change and CI.
+```
+
 ## Resources
 
 ### scripts/

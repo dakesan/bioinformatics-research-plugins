@@ -35,7 +35,12 @@
 
 ### Figures
 
-![Figure 1](../../results/figure1.png)
+**IMPORTANT**: Save all figures with descriptive names to `results/` directory.
+- Naming convention: `exp##_[description].[ext]`
+- Example: `exp01_volcano_plot.png`, `exp02_heatmap.pdf`
+
+![Figure 1: Example plot](../../results/exp00_example_plot.png)
+*Figure 1: Brief description of what this figure shows.*
 
 ### Tables
 

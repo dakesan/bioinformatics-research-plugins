@@ -36,9 +36,13 @@ Project navigation hub - current status, priorities, and links.
 
 ### Experiments
 
-| Exp # | Status | Labnote | Report |
-|-------|--------|---------|--------|
-| Exp01 | Planning | [labnote](notebook/labnote/Exp01_*.md) | - |
+| Exp # | Status | Labnote | Figures Ready | Report Progress |
+|-------|--------|---------|---------------|-----------------|
+| Exp01 | Planning | [labnote](notebook/labnote/Exp01_*.md) | No | Not Started |
+
+<!-- Status options: Planning | In Progress | Complete | Blocked -->
+<!-- Figures Ready: Yes (all saved to results/) | No | Partial -->
+<!-- Report Progress: Not Started | Draft | Reviewed | Published -->
 
 ### Reference Documents
 
