@@ -2,6 +2,7 @@
   "name": "experiment-report",
   "version": "0.1.0",
   "description": "Integrated report generation and improvement from lab notebook results",
+  "keywords": ["report", "documentation", "synthesis", "refinement"],
   "skills": [
     {
       "name": "experiment-report",

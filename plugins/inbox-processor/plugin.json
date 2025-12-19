@@ -2,6 +2,7 @@
   "name": "inbox-processor",
   "version": "0.1.0",
   "description": "Classification and processing of user input files (memos, meeting notes)",
+  "keywords": ["inbox", "organization", "classification"],
   "skills": [
     {
       "name": "inbox-processor",
