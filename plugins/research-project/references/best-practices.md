@@ -234,14 +234,12 @@ Example:
 
 ### Traceability: Claims to Evidence
 
-**Every claim must link to verifiable evidence**
-
-Report traceability structure:
+Every claim must link to verifiable evidence. Report traceability structure:
 ```
 Claim → Evidence Path → Figure/Table ID → Uncertainty Level → Open Issues
 ```
 
-**Template for each finding in report**:
+Template for each finding in report:
 
 ```markdown
 ### Finding: [Title]
@@ -306,9 +304,7 @@ to normal tissue (adjusted p < 0.001, n=1,100 tumors, n=113 normal).
 
 ### Reproducibility Block
 
-**Required metadata for every report**
-
-Include a reproducibility block before submission:
+Required metadata for every report. Include a reproducibility block before submission:
 
 ```markdown
 ## Reproducibility Information
@@ -347,14 +343,14 @@ Key commands executed (in order):
 
 Before finalizing report:
 
-- [ ] **Environment documented**: OS, Python/R version specified
-- [ ] **Dependencies listed**: All packages with exact versions
-- [ ] **Data sources specified**: Dataset name, version/date, access method
-- [ ] **Random seeds recorded**: All stochastic operations reproducible
-- [ ] **Command history preserved**: Key commands in execution order
-- [ ] **File paths verified**: All referenced files exist and are accessible
-- [ ] **Code committed**: All analysis code in version control with tag
-- [ ] **Results reproducible**: Re-running commands produces same output
+- [ ] Environment documented: OS, Python/R version specified
+- [ ] Dependencies listed: All packages with exact versions
+- [ ] Data sources specified: Dataset name, version/date, access method
+- [ ] Random seeds recorded: All stochastic operations reproducible
+- [ ] Command history preserved: Key commands in execution order
+- [ ] File paths verified: All referenced files exist and are accessible
+- [ ] Code committed: All analysis code in version control with tag
+- [ ] Results reproducible: Re-running commands produces same output
 
 ### Dependency Lock File
 

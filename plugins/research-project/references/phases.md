@@ -83,7 +83,7 @@ Research projects typically progress through distinct phases. Each phase has spe
 - [ ] Key findings clearly articulated
 - [ ] Supporting evidence organized
 - [ ] Limitations acknowledged
-- [ ] **Report passes quality checklist** (see `references/quality-standards.md`):
+- [ ] Report passes quality checklist (see `references/quality-standards.md`):
   - [ ] All claims linked to evidence (notebook/figure/table)
   - [ ] Statistics complete (test name, n, effect size, p-value)
   - [ ] Figures/tables have proper axes, units, legends, error bars

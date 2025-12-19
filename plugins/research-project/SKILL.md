@@ -97,7 +97,7 @@ Provide research best practices from `references/best-practices.md` and `referen
 
 ### 5. Content Review
 
-**Proactively review user-created content against quality standards**
+Proactively review user-created content against quality standards.
 
 **When to use**: When user presents:
 - Draft reports or conclusions
