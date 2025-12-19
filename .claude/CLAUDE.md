@@ -23,8 +23,23 @@
 
 Previous release with similar path execution fixes.
 
+## Coding Rules
+
+### Version Management
+
+**Rule**: After editing files, you MUST bump the plugin version in `plugin.json`.
+
+- Increment version according to semantic versioning:
+  - Patch (0.0.x): Bug fixes and documentation clarifications
+  - Minor (0.x.0): New features or significant improvements
+  - Major (x.0.0): Breaking changes
+
+- Update keywords in `plugin.json` to reflect changes made
+- Always commit version changes together with the changes that prompted them
+- Include version bump in the commit message
+
 ## Important Guidelines
 
-- Version bumps are required when documentation clarifications affect user-facing behavior
 - Always specify absolute paths when referencing plugin scripts in documentation
 - Keep this file updated with version changes and important fixes
+- Version bumps are required when documentation clarifications affect user-facing behavior
