@@ -53,7 +53,12 @@ Before running init_report.py, verify these requirements:
 1. Complete pre-generation checklist above
 2. Run init script (from project root):
    ```bash
-   python path/to/init_report.py --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
+   # If plugin repo is cloned via ghq:
+   python ~/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/experiment-report/scripts/init_report.py \
+     --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
+
+   # Or copy script to project and run locally:
+   python scripts/init_report.py --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
    ```
 3. Script generates template with claim-evidence structure
 4. Fill in evidence tables for each finding (verify paths exist)

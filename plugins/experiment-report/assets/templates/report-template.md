@@ -275,8 +275,9 @@ Each finding must have:
 
 **Report Generation** (from project root):
 ```bash
-# Generate report (adjust path to init_report.py as needed)
-python path/to/init_report.py --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
+# Generate report (using plugin repo path)
+python ~/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/experiment-report/scripts/init_report.py \
+  --labnote notebook/labnote/Exp*.ipynb --output notebook/report/
 
 # Export to PDF (from notebook/report/ directory)
 cd notebook/report/
