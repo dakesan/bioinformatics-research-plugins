@@ -12,6 +12,8 @@ The `experiment-report` plugin handles both report generation (mechanical extrac
 - **Refinement**: AI-guided improvement for scientific rigor and clarity
 - **Quality Standards**: Maintains fact/interpretation separation
 - **Integration**: Synthesizes findings across multiple experiments
+- **Figure Integration**: Structured workflow for incorporating images from notebooks
+- **PDF Export**: Generate publication-ready PDFs using pandoc + typst
 
 ## Commands
 
@@ -155,6 +157,11 @@ For improving existing reports:
 - `references/mapping-rules.md` - Notebook → report section mapping
 - `references/refinement-guide.md` - Quality criteria and improvement patterns
 
+### Templates
+
+- `assets/templates/report-template.md` - Markdown report template
+- `assets/templates/report.typ` - typst template for PDF export
+
 ## Quality Standards
 
 Following research-project quality-standards.md:
@@ -192,6 +199,22 @@ Following research-project quality-standards.md:
 - Fill in synthesis sections
 - Add cross-references
 - Verify evidence citations
+
+### PDF Export
+
+Export finalized reports to PDF:
+
+```bash
+# Basic export
+pandoc Report_Exp01-02_analysis.md -o report.pdf --pdf-engine=typst
+
+# With template
+pandoc Report_Exp01-02_analysis.md -o report.pdf \
+  --pdf-engine=typst \
+  --template=assets/templates/report.typ
+```
+
+Prerequisites: pandoc, typst
 
 ### Refinement Tips
 

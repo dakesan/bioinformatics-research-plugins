@@ -15,52 +15,204 @@ from pathlib import Path
 from datetime import datetime
 
 
-REPORT_TEMPLATE = """# {title}
+REPORT_TEMPLATE = '''# {title}
 
 **Date**: {date}
-**Report Type**: Integrated Analysis Report
+
+**Author**: [Name]
+
+**Experiments Covered**: {experiments_list}
+
+**Project Goal**: [Link to STEERING.md or brief statement of overarching research objective]
 
 ---
 
 ## Executive Summary
 
-[TODO: 3-5 sentences capturing key findings and implications]
+[3-5 sentences: Research question → Approach → Key findings (with numbers) → Implications]
 
-{executive_summary_placeholder}
+<!-- Quality Gate: Executive Summary
+- [ ] Length: 3-5 sentences (no more)
+- [ ] Contains quantitative highlight (e.g., "2,453 genes", "90% validation")
+- [ ] Self-contained: understandable without reading full report
+- [ ] No technical jargon or figure references
+- [ ] Covers: question, approach, finding, implication
+-->
+
+---
 
 ## Background
 
-### Research Question
-
-{research_question_placeholder}
-
-### Context
+### Research Context
 
 {background_placeholder}
 
-## Materials and Methods
+### Research Question
 
-{methods_placeholder}
+<!-- Extract from notebook Hypothesis sections -->
+
+### Hypotheses Tested
+
+| ID | Hypothesis | Source Experiment | Status |
+|----|------------|-------------------|--------|
+{hypotheses_rows}
+
+---
+
+## Methods
+
+### Data Sources
+
+| Dataset | Version/Date | Source | Experiments Used |
+|---------|--------------|--------|------------------|
+{data_sources_rows}
+
+### Analysis Environment
+
+| Component | Specification |
+|-----------|---------------|
+| OS | <!-- e.g., macOS 14.0 / Ubuntu 22.04 --> |
+| Python | <!-- e.g., 3.11.5 --> |
+| Key packages | <!-- e.g., pandas 2.0.3, numpy 1.24.0 --> |
+| Random seed | <!-- e.g., 42 --> |
+| Hardware | <!-- e.g., M2 Max, 32GB RAM --> |
+
+### Tools and Versions
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+{tools_rows}
+
+### Procedures
+
+<!-- Consolidate methods from {num_notebooks} notebook(s) -->
+
+<!-- Quality Gate: Methods
+- [ ] All datasets have version/date
+- [ ] All tools have versions
+- [ ] Environment reproducible (OS, packages, seed)
+- [ ] Procedures detailed enough for replication
+-->
+
+---
 
 ## Findings
 
-{findings_placeholder}
+<!--
+IMPORTANT: Use Claim-Evidence structure for each finding.
+Each finding must have:
+1. Claim/Theme: What you observed
+2. Observation: Factual description (Level 1)
+3. Evidence: Specific references to notebooks, figures, statistics
+4. Uncertainty: Confidence level and caveats
+5. Alternative interpretations: Other possible explanations
+-->
+
+{findings_section}
+
+<!-- Quality Gate: Findings
+- [ ] Each finding has Claim-Evidence structure
+- [ ] All evidence paths exist and are correct (verify: ../labnote/, ../results/)
+- [ ] Statistics include test type, p-value, effect size
+- [ ] Observations are factual (no interpretation)
+- [ ] Uncertainty level stated for each finding
+- [ ] Alternative interpretations considered
+- [ ] Figures numbered and referenced correctly
+-->
+
+---
 
 ## Synthesis
 
-{synthesis_placeholder}
+### Integration of Findings
+
+<!-- How do the findings connect? What story do they tell together? -->
+
+**Claim-Evidence Summary**:
+
+| Main Claim | Supporting Findings | Confidence | Key Evidence |
+|------------|---------------------|------------|--------------|
+| [Integrated claim 1] | F1, F2 | Strong/Moderate/Weak | [Key stats/figures] |
+| [Integrated claim 2] | F2, F3 | Strong/Moderate/Weak | [Key stats/figures] |
+
+### Hypothesis Evaluation
+
+| Hypothesis | Verdict | Evidence Summary | Confidence |
+|------------|---------|------------------|------------|
+{hypothesis_eval_rows}
+
+### Interpretation (Level 2)
+
+<!-- What do these findings mean? Connect to broader biological context -->
+
+<!-- Quality Gate: Synthesis
+- [ ] Claims clearly separated from facts
+- [ ] Each claim links to specific findings
+- [ ] Confidence language calibrated (see refinement-guide.md)
+- [ ] Alternative explanations discussed
+- [ ] Hypotheses evaluated with explicit verdict
+- [ ] No unsupported assertions
+-->
+
+---
 
 ## Limitations
 
-{limitations_placeholder}
+### Methodological Constraints
+
+| Limitation | Impact | Potential Solution |
+|------------|--------|-------------------|
+| <!-- Specific limitation 1 --> | <!-- How it affects conclusions --> | <!-- How to address --> |
+| <!-- Specific limitation 2 --> | <!-- How it affects conclusions --> | <!-- How to address --> |
+
+### Interpretive Caveats
+
+<!-- Broader constraints on interpretation: correlation vs causation, generalizability, etc. -->
+
+<!-- Quality Gate: Limitations
+- [ ] Limitations are specific (not generic)
+- [ ] Impact on conclusions stated
+- [ ] Solutions or mitigations suggested
+- [ ] Honest without being apologetic
+-->
+
+---
 
 ## Future Directions
 
-{future_directions_placeholder}
+### Immediate Next Steps
+
+| Priority | Action | Addresses | Expected Outcome |
+|----------|--------|-----------|------------------|
+| 1 | <!-- Specific experiment/analysis --> | <!-- Which limitation/question --> | <!-- What we'll learn --> |
+| 2 | <!-- Specific experiment/analysis --> | <!-- Which limitation/question --> | <!-- What we'll learn --> |
+
+### Long-term Directions
+
+<!-- Broader research directions suggested by this work -->
+
+<!-- Quality Gate: Future Directions
+- [ ] Next steps are specific and actionable
+- [ ] Linked to limitations or open questions
+- [ ] Prioritized by importance
+- [ ] Expected outcomes stated
+-->
+
+---
 
 ## Conclusion
 
-[TODO: Final synthesis and key takeaways]
+<!-- 1-3 paragraphs: Restate key findings → Main takeaway → Broader implications → Forward-looking statement -->
+
+<!-- Quality Gate: Conclusion
+- [ ] Length: 1-3 paragraphs
+- [ ] Restates key findings briefly
+- [ ] Clear main takeaway message
+- [ ] No new information introduced
+- [ ] Appropriate confidence level
+-->
+
+---
 
 ## References
 
@@ -70,14 +222,98 @@ REPORT_TEMPLATE = """# {title}
 
 ## Appendix
 
-### Lab Notebooks
+### A. Lab Notebooks
 
-{notebooks_list}
+| Experiment | Notebook Path | Status | Key Outputs |
+|------------|---------------|--------|-------------|
+{notebooks_table}
 
-### Supplementary Information
+### B. Figure Index
 
-[TODO: Add supplementary materials]
-"""
+| Figure | Path | Description | Used In |
+|--------|------|-------------|---------|
+{figures_table}
+
+### C. Reproducibility Information
+
+**Report Generation**:
+```bash
+# Generate report
+python scripts/init_report.py --labnote {labnote_paths_cmd} --output ./
+
+# Export to PDF
+pandoc {report_filename} -o report.pdf --pdf-engine=typst --template=assets/templates/report.typ
+```
+
+**Data Availability**:
+- Raw data: [Location/repository]
+- Processed data: `../results/`
+- Code: [Location/repository]
+
+### D. Supplementary Materials
+
+[Links to additional data, code, or documentation]
+
+---
+
+<!--
+FINAL QUALITY CHECKLIST (before submission)
+
+Structure:
+- [ ] All sections complete
+- [ ] Logical flow between sections
+- [ ] No redundancy
+
+Evidence:
+- [ ] All figure paths verified (exist in ../results/)
+- [ ] All notebook paths verified (exist in ../labnote/)
+- [ ] All statistics include test, p-value, effect size
+- [ ] Evidence tables complete for each finding
+
+Scientific Rigor:
+- [ ] Facts (Observations) separated from interpretation (Synthesis)
+- [ ] Confidence language calibrated throughout
+- [ ] Alternative explanations considered
+- [ ] Limitations honestly acknowledged
+
+Writing:
+- [ ] Concise and clear
+- [ ] Consistent terminology
+- [ ] Figures referenced in text
+- [ ] References properly formatted
+
+See references/refinement-guide.md for detailed criteria.
+-->
+'''
+
+FINDING_TEMPLATE = '''### Finding {num}: {title}
+
+**Claim**: <!-- One sentence stating the main observation -->
+
+**Observation** (Level 1 - Facts only):
+
+<!-- Extract from Results section of {notebook_name} -->
+
+**Evidence Table**:
+
+| Evidence Type | Location | Value/Description |
+|---------------|----------|-------------------|
+| Lab Notebook | `{notebook_path}` | <!-- Section reference --> |
+| Figure | `{results_path}/fig##_*.png` | <!-- Brief description --> |
+| Statistic | <!-- Source --> | <!-- e.g., p < 0.001, FC = 2.3 --> |
+| Raw Data | `{results_path}/*.csv` | <!-- Description --> |
+
+**Uncertainty & Confidence**:
+- Confidence level: <!-- Strong/Moderate/Weak -->
+- Key caveats: <!-- List limitations specific to this finding -->
+
+**Alternative Interpretations**:
+- <!-- Alternative explanation 1 -->
+- <!-- Alternative explanation 2 -->
+
+---
+
+'''
 
 
 def extract_notebook_metadata(notebook_path):
@@ -95,14 +331,16 @@ def extract_notebook_metadata(notebook_path):
     metadata = {
         'path': str(path),
         'name': path.name,
-        'exists': path.exists()
+        'exists': path.exists(),
+        'relative_path': f'../labnote/{path.name}',
+        'results_path': None
     }
 
     if not path.exists():
         print(f"⚠️  Warning: Notebook not found: {notebook_path}")
         return metadata
 
-    # Try to extract title from filename
+    # Try to extract experiment info from filename
     # Format: Exp##_description.ext
     filename = path.stem
     if filename.startswith('Exp'):
@@ -110,8 +348,47 @@ def extract_notebook_metadata(notebook_path):
         if len(parts) > 1:
             metadata['experiment_number'] = parts[0]
             metadata['description'] = parts[1].replace('-', ' ').replace('_', ' ')
+            # Infer results path
+            exp_lower = parts[0].lower()
+            metadata['results_path'] = f'../results/{exp_lower}'
 
     return metadata
+
+
+def generate_findings_section(notebooks_metadata):
+    """
+    Generate findings section with claim-evidence structure.
+
+    Args:
+        notebooks_metadata: List of metadata dicts
+
+    Returns:
+        String containing findings section
+    """
+    findings = []
+
+    for i, meta in enumerate(notebooks_metadata, 1):
+        if not meta['exists']:
+            continue
+
+        title = meta.get('description', f'Finding from {meta["name"]}')
+        title = title.title()
+
+        results_path = meta.get('results_path', '../results/exp##')
+
+        finding = FINDING_TEMPLATE.format(
+            num=i,
+            title=title,
+            notebook_name=meta['name'],
+            notebook_path=meta['relative_path'],
+            results_path=results_path
+        )
+        findings.append(finding)
+
+    if not findings:
+        return "<!-- No notebooks provided - add findings manually -->"
+
+    return '\n'.join(findings)
 
 
 def generate_placeholders(notebooks_metadata):
@@ -125,54 +402,72 @@ def generate_placeholders(notebooks_metadata):
         dict of placeholder strings
     """
     placeholders = {}
-
-    # Notebooks list for appendix
-    notebooks_list = []
-    for meta in notebooks_metadata:
-        if meta['exists']:
-            notebooks_list.append(f"- `{meta['name']}`")
-    placeholders['notebooks_list'] = '\n'.join(notebooks_list) if notebooks_list else "- [No notebooks specified]"
-
-    # Generate section placeholders based on number of notebooks
     num_notebooks = len([m for m in notebooks_metadata if m['exists']])
 
+    placeholders['num_notebooks'] = num_notebooks
+
+    # Experiments list
+    exp_names = []
+    for meta in notebooks_metadata:
+        if meta['exists']:
+            exp_num = meta.get('experiment_number', meta['name'])
+            exp_names.append(exp_num)
+    placeholders['experiments_list'] = ', '.join(exp_names) if exp_names else '[Exp##, Exp##, ...]'
+
+    # Background placeholder
     if num_notebooks == 0:
-        placeholders['executive_summary_placeholder'] = "\n[No notebooks provided - please add content manually]"
-        placeholders['research_question_placeholder'] = "[TODO: Define research question]"
-        placeholders['background_placeholder'] = "[TODO: Provide context and rationale]"
-        placeholders['methods_placeholder'] = "[TODO: Summarize methods]"
-        placeholders['findings_placeholder'] = "[TODO: Describe findings]"
-        placeholders['synthesis_placeholder'] = "[TODO: Synthesize interpretations]"
-        placeholders['limitations_placeholder'] = "[TODO: Acknowledge limitations]"
-        placeholders['future_directions_placeholder'] = "[TODO: Outline next steps]"
+        placeholders['background_placeholder'] = '<!-- No notebooks provided - add background manually -->'
     else:
-        # Provide guidance for content extraction
-        placeholders['executive_summary_placeholder'] = f"\n<!-- Extract key conclusions from {num_notebooks} notebook(s) -->"
-        placeholders['research_question_placeholder'] = "<!-- Extract from notebook Hypothesis sections -->"
-        placeholders['background_placeholder'] = "<!-- Extract from notebook Background sections -->"
-        placeholders['methods_placeholder'] = f"<!-- Consolidate methods from {num_notebooks} notebook(s) -->"
+        placeholders['background_placeholder'] = f'<!-- Synthesize background from {num_notebooks} notebook(s) -->'
 
-        # Generate finding placeholders based on notebooks
-        findings = []
-        for i, meta in enumerate(notebooks_metadata, 1):
-            if not meta['exists']:
-                continue
-            desc = meta.get('description', f'Finding {i}')
-            findings.append(f"""### Finding {i}: {desc}
+    # Hypotheses rows
+    hyp_rows = []
+    for i, meta in enumerate(notebooks_metadata, 1):
+        if meta['exists']:
+            exp_num = meta.get('experiment_number', f'Exp{i:02d}')
+            hyp_rows.append(f'| H{i} | <!-- Extract from {meta["name"]} --> | {exp_num} | Supported/Rejected/Inconclusive |')
+    placeholders['hypotheses_rows'] = '\n'.join(hyp_rows) if hyp_rows else '| H1 | [Testable statement] | Exp## | Supported/Rejected/Inconclusive |'
 
-**Observation**: <!-- Extract from Results section of {meta['name']} -->
+    # Data sources rows
+    data_rows = []
+    for meta in notebooks_metadata:
+        if meta['exists']:
+            exp_num = meta.get('experiment_number', 'Exp##')
+            data_rows.append(f'| <!-- Dataset --> | <!-- Version/Date --> | <!-- Source --> | {exp_num} |')
+    placeholders['data_sources_rows'] = '\n'.join(data_rows) if data_rows else '| [Name] | [v1.0 / 2025-01-15] | [URL/path] | Exp## |'
 
-**Evidence**:
-- Lab notebook: `{meta['name']}`
-- Figures: [TODO]
+    # Tools rows
+    placeholders['tools_rows'] = '| <!-- Tool name --> | <!-- Version --> | <!-- Brief purpose --> |'
 
-**Interpretation**: <!-- Extract from Discussion section -->
-""")
+    # Findings section
+    placeholders['findings_section'] = generate_findings_section(notebooks_metadata)
 
-        placeholders['findings_placeholder'] = '\n'.join(findings) if findings else "[TODO: Add findings]"
-        placeholders['synthesis_placeholder'] = f"<!-- Integrate interpretations from {num_notebooks} notebook(s) -->"
-        placeholders['limitations_placeholder'] = "<!-- Consolidate limitations from all notebooks -->"
-        placeholders['future_directions_placeholder'] = "<!-- Prioritize next steps from all notebooks -->"
+    # Hypothesis evaluation rows
+    eval_rows = []
+    for i, meta in enumerate(notebooks_metadata, 1):
+        if meta['exists']:
+            eval_rows.append(f'| H{i}: <!-- Statement --> | Supported/Rejected/Inconclusive | <!-- Brief evidence --> | Strong/Moderate/Weak |')
+    placeholders['hypothesis_eval_rows'] = '\n'.join(eval_rows) if eval_rows else '| H1: [Statement] | Supported/Rejected/Inconclusive | [Brief evidence] | Strong/Moderate/Weak |'
+
+    # Notebooks table for appendix
+    nb_rows = []
+    for meta in notebooks_metadata:
+        if meta['exists']:
+            exp_num = meta.get('experiment_number', 'Exp##')
+            nb_rows.append(f'| {exp_num} | `{meta["relative_path"]}` | Complete | <!-- List figures/tables --> |')
+    placeholders['notebooks_table'] = '\n'.join(nb_rows) if nb_rows else '| Exp## | `../labnote/Exp##_*.ipynb` | Complete | [List figures/tables] |'
+
+    # Figures table for appendix
+    fig_rows = []
+    for i, meta in enumerate(notebooks_metadata, 1):
+        if meta['exists']:
+            results_path = meta.get('results_path', f'../results/exp{i:02d}')
+            fig_rows.append(f'| Fig {i} | `{results_path}/fig01_*.png` | <!-- Description --> | Finding {i} |')
+    placeholders['figures_table'] = '\n'.join(fig_rows) if fig_rows else '| Fig 1 | `../results/exp##/fig01_*.png` | [Description] | Finding 1 |'
+
+    # Command line paths
+    labnote_paths = ' '.join([meta['relative_path'] for meta in notebooks_metadata if meta['exists']])
+    placeholders['labnote_paths_cmd'] = labnote_paths if labnote_paths else '../labnote/Exp*.ipynb'
 
     return placeholders
 
@@ -240,6 +535,7 @@ def init_report(labnote_paths, output_dir, title=None):
 
     # Generate placeholders
     placeholders = generate_placeholders(notebooks_metadata)
+    placeholders['report_filename'] = report_path.name
 
     # Generate report content
     report_content = REPORT_TEMPLATE.format(
@@ -256,11 +552,13 @@ def init_report(labnote_paths, output_dir, title=None):
     # Next steps
     print("📋 Next steps:")
     print("1. Review the generated report template")
-    print("2. Extract content from lab notebooks to fill in placeholders")
-    print("3. Synthesize findings across experiments")
-    print("4. Use /research-refine to improve report quality")
+    print("2. Fill in claim-evidence tables for each finding")
+    print("3. Verify all evidence paths exist (../labnote/, ../results/)")
+    print("4. Complete quality gate checklists in each section")
+    print("5. Use /research-refine to improve report quality")
     print()
     print("💡 Tip: Look for <!-- comments --> for extraction guidance")
+    print("💡 Tip: Check quality gate checklists before finalizing")
 
     return report_path
 

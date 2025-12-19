@@ -19,12 +19,40 @@ Create integrated reports from completed lab notebooks using `scripts/init_repor
 
 **When to use**: When ready to synthesize multiple experiments into a cohesive report.
 
-**Workflow**:
-1. Identify completed lab notebooks to include
+#### Pre-Generation Checklist (MANDATORY)
+
+Before running init_report.py, verify these requirements:
+
+**Step 1: Notebook Completeness**
+- [ ] All included notebooks have completed Results sections
+- [ ] All included notebooks have completed Discussion sections
+- [ ] All figures saved to `results/exp##/` directory
+
+**Step 2: Project Alignment**
+- [ ] Report scope aligns with STEERING.md objectives
+- [ ] Primary hypothesis/research question identified
+- [ ] Notebooks collectively address the research question
+
+**Step 3: Evidence Verification**
+- [ ] List all figures needed for each finding
+- [ ] Verify figure paths exist: `ls ../results/exp##/`
+- [ ] Identify key statistics for each claim
+- [ ] Note any missing evidence to address
+
+**Pre-Generation Questions** (ask user):
+1. "Which experiments are included?" (list Exp## numbers)
+2. "Is the Discussion section complete in each notebook?"
+3. "What is the main research question this report addresses?"
+4. "What are the 2-3 key claims you want to make?"
+5. "Are all figures saved to results/exp##/ directories?"
+
+#### Workflow
+
+1. Complete pre-generation checklist above
 2. Run init script: `python scripts/init_report.py --labnote [paths] --output notebook/report/`
-3. Script extracts content using `references/mapping-rules.md`
-4. Generates report template with placeholder sections
-5. AI fills in synthesis and analysis sections
+3. Script generates template with claim-evidence structure
+4. Fill in evidence tables for each finding (verify paths exist)
+5. Complete quality gate checklists in each section
 6. Output: `notebook/report/Report_[title].md`
 
 **Mapping rules** (from lab notebooks to report):
@@ -167,6 +195,91 @@ Reports maintain separation between facts and interpretation (from research-proj
 - State confidence appropriately
 - Suggest applications
 - Identify unknowns
+
+### 5. Figure Integration
+
+Integrate figures from lab notebooks and analysis outputs into reports.
+
+**Figure sources**:
+- Jupyter notebooks: Inline outputs saved to `results/exp##/`
+- Command-line tools: Output images in `results/exp##/`
+- External analysis: Imported figures with proper attribution
+
+**Directory structure**:
+```
+notebook/
+├── labnote/
+│   ├── Exp01_analysis.ipynb
+│   └── Exp02_validation.md
+├── report/
+│   └── Report_Exp01-02_integrated.md
+└── results/
+    ├── exp01/
+    │   ├── fig01_heatmap.png
+    │   └── fig02_volcano.png
+    └── exp02/
+        └── fig01_validation.png
+```
+
+**Markdown figure syntax**:
+```markdown
+![Figure 1: Heatmap of differential expression](../results/exp01/fig01_heatmap.png)
+
+*Figure 1: Heatmap showing top 50 differentially expressed genes (Exp01).*
+```
+
+**Figure naming convention**:
+- Format: `fig##_description.{png,pdf,svg}`
+- Examples: `fig01_heatmap.png`, `fig02_volcano_plot.pdf`
+- Use descriptive names for clarity
+
+**Best practices**:
+1. Save all figures to `results/exp##/` during experiment execution
+2. Use relative paths from report location (`../results/...`)
+3. Include figure captions with experiment reference
+4. Prefer PNG for raster, PDF/SVG for vector graphics
+5. Number figures sequentially within each experiment
+
+**Extracting figures from Jupyter notebooks**:
+```python
+# In notebook cell, save figure explicitly
+import matplotlib.pyplot as plt
+fig.savefig('../results/exp01/fig01_heatmap.png', dpi=150, bbox_inches='tight')
+```
+
+### 6. PDF Export
+
+Export final reports to PDF using pandoc with typst engine.
+
+**Prerequisites**:
+- pandoc (document converter)
+- typst (PDF engine)
+
+**Basic export command**:
+```bash
+pandoc Report_Exp01-02_integrated.md -o report.pdf --pdf-engine=typst
+```
+
+**With typst template**:
+```bash
+pandoc Report_Exp01-02_integrated.md -o report.pdf \
+  --pdf-engine=typst \
+  --template=assets/templates/report.typ
+```
+
+**Template location**: `assets/templates/report.typ`
+
+**Export workflow**:
+1. Complete and refine Markdown report
+2. Verify all figure paths are correct (relative paths)
+3. Run pandoc command from `notebook/report/` directory
+4. Review PDF output for formatting issues
+5. Iterate if needed
+
+**Troubleshooting**:
+- **Missing figures**: Check relative paths from report directory
+- **Font issues**: Ensure typst has access to required fonts
+- **Long tables**: Consider splitting or using landscape orientation
 
 ## Workflow Patterns
 
