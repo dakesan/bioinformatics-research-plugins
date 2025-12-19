@@ -196,39 +196,7 @@ Reduced migration if Gene X promotes motility
 
 ---
 
-### 6. Administrative/Grant Content
-
-**Indicators**:
-- Budget information
-- Timeline/milestones
-- Reporting requirements
-- Institutional correspondence
-
-**Content patterns**:
-- Dollar amounts
-- Grant numbers
-- Deadline dates
-- Formal language
-
-**Destination**: Keep in `inbox/` or move to `inbox/archive/`
-
-**Example**:
-```markdown
-# Grant Progress Report - Due Feb 1
-
-Budget utilization: $45,000 / $100,000
-...
-```
-
-**Actions**:
-1. Usually keep in `inbox/` for administrative reference
-2. Optionally create `inbox/admin/` subdirectory
-3. Not integrated into research workflow
-4. May extract milestones to STEERING.md
-
----
-
-### 7. Miscellaneous/Unclear
+### 6. Miscellaneous/Unclear
 
 **Indicators**:
 - Mixed content types
@@ -272,9 +240,6 @@ Is file in inbox/?
 │  │
 │  ├─ Is tabular/sequence data file?
 │  │  └─ Yes → Raw Data (data/raw/)
-│  │
-│  ├─ Contains budget, grants, admin info?
-│  │  └─ Yes → Administrative (keep in inbox/ or inbox/admin/)
 │  │
 │  └─ Unclear or mixed?
 │     └─ Miscellaneous (ask user for classification)

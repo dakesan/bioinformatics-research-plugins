@@ -77,17 +77,7 @@ Triggered by requests like:
 - Key findings
 - Relevance to work
 
-### 6. Administrative/Grant
-
-**Indicators**: Budget, timeline, institutional correspondence
-
-**Destination**: Keep in `inbox/` or `inbox/admin/`
-
-**Actions**:
-- Usually not integrated into research workflow
-- May extract milestones to STEERING.md
-
-### 7. Miscellaneous/Unclear
+### 6. Miscellaneous/Unclear
 
 **Indicators**: Mixed content, unclear purpose
 
@@ -104,7 +94,6 @@ Is file in inbox/? → Yes
   ├─ Meeting discussion? → Meeting Notes
   ├─ Paper citations? → Literature
   ├─ Tabular data? → Raw Data
-  ├─ Admin/grant info? → Administrative
   └─ Unclear? → Ask user
 ```
 

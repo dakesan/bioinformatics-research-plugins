@@ -400,6 +400,7 @@ def init_project(path):
         project_dir / "notebook" / "report",
         project_dir / "notebook" / "knowledge",
         project_dir / "inbox",
+        project_dir / "inbox" / "archive",
         project_dir / "data" / "raw",
         project_dir / "results",
     ]

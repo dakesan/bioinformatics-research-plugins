@@ -36,6 +36,7 @@ project/
 │   │   └── Exp00_TEMPLATE_report.md        # Report template
 │   └── knowledge/                          # Reusable procedures
 ├── inbox/                                  # User input files
+│   └── archive/                            # Processed files
 ├── data/raw/                               # Raw data (gitignored)
 └── results/                                # Outputs (gitignored)
 ```

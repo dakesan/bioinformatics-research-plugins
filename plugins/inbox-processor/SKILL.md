@@ -22,8 +22,7 @@ Classify inbox files into categories based on content.
 3. **Ideas**: Research ideas, hypotheses, brainstorming
 4. **Data**: Raw data files, datasets
 5. **Literature**: Papers, references, reading notes
-6. **Administrative**: Grants, reports, correspondence
-7. **Miscellaneous**: Unclear or mixed content
+6. **Miscellaneous**: Unclear or mixed content
 
 **Workflow**:
 1. Read file from `inbox/`
@@ -76,7 +75,6 @@ Recommend where content should be integrated.
 | Research hypothesis | Refine with `hypothesis-driven` skill | Improve quality |
 | Raw data file | `data/raw/[filename]` | Data storage |
 | Literature notes | `notebook/knowledge/literature_[topic].md` | Reference material |
-| Admin/grant | Keep in `inbox/` or archive | Not research-critical |
 
 ### 4. Integration Actions
 
