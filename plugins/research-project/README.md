@@ -59,6 +59,13 @@ Usage:
 
 - `scripts/init_project.py` - Project initialization script (executable)
 
+  **Usage**:
+  ```bash
+  python /Users/oodakemac/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/research-project/scripts/init_project.py --path /path/to/target/project
+  ```
+
+  **Important**: Execute with absolute path. The `--path` argument specifies the target project directory.
+
 ### References
 
 - `references/phases.md` - Research phase definitions and transition criteria

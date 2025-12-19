@@ -19,7 +19,11 @@ Initialize a new research project structure using `scripts/init_project.py`.
 
 **Workflow**:
 1. Confirm project location (current directory or specified path)
-2. Run initialization script: `python scripts/init_project.py --path /path/to/project`
+2. Run initialization script from the plugin directory:
+   ```bash
+   python /Users/oodakemac/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/research-project/scripts/init_project.py --path /path/to/target/project
+   ```
+   **Important**: Execute the script using its absolute path. The `--path` argument specifies where the project structure will be created.
 3. Verify created structure
 4. Guide user to next steps (edit STEERING.md, create first experiment)
 
