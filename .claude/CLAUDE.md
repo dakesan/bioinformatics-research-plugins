@@ -12,7 +12,7 @@
 
 ## Plugins
 
-### research-project (v0.2.1)
+### research-project (v0.3.0)
 
 プロジェクト管理とフェーズ制御
 
@@ -21,12 +21,13 @@
 - Scripts: `scripts/init_project.py --path <target>`
 - References: `phases.md`, `best-practices.md`, `quality-standards.md`
 
-### lab-notebook (v0.1.0)
+### lab-notebook (v0.2.0)
 
 実験ごとのラボノートブック作成
 
 - Skills: `lab-notebook`
 - Commands: `/research-exp`
+- Scripts: `scripts/notebook_to_pdf.sh <input.ipynb> [output.pdf]`
 - References: `notebook-guidelines.md`
 
 ### experiment-report (v0.2.1)

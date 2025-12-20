@@ -11,6 +11,7 @@ The `lab-notebook` plugin provides structured templates and guidelines for creat
 - **Template-based creation**: Pre-structured notebook templates with standard sections
 - **Dual format support**: Jupyter for Python experiments, Markdown for others
 - **Quality guidelines**: Comprehensive documentation standards
+- **PDF export**: Convert notebooks to PDF using pandoc + typst
 - **Integration**: Works seamlessly with research-project and experiment-report plugins
 
 ## Commands
@@ -47,6 +48,10 @@ Standard sections in all notebooks:
 
 ## Files
 
+### Scripts
+
+- `scripts/notebook_to_pdf.sh` - Convert Jupyter notebook to PDF
+
 ### Templates
 
 - `assets/templates/labnote-template.ipynb` - Jupyter notebook template
@@ -59,6 +64,31 @@ Standard sections in all notebooks:
 ### References
 
 - `references/notebook-guidelines.md` - Comprehensive section-by-section guidelines
+
+## PDF Export
+
+Export Jupyter notebooks to PDF:
+
+```bash
+# Basic export
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh Exp01_analysis.ipynb
+
+# Custom output filename
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh Exp01_analysis.ipynb report.pdf
+
+# Exclude code cells (output only)
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh --no-input Exp01_analysis.ipynb
+
+# Keep intermediate markdown
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh --keep-md Exp01_analysis.ipynb
+```
+
+**Prerequisites**: nbconvert, pandoc, typst
+
+```bash
+uv pip install nbconvert
+brew install pandoc typst
+```
 
 ## Format Selection
 
