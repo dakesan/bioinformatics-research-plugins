@@ -30,7 +30,7 @@ NC='\033[0m' # No Color
 
 # Script directory (for finding template)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEMPLATE_PATH="${SCRIPT_DIR}/../../experiment-report/assets/templates/report.typ"
+TEMPLATE_PATH="${SCRIPT_DIR}/../assets/templates/notebook.typ"
 
 # Usage function
 usage() {

@@ -56,6 +56,7 @@ Standard sections in all notebooks:
 
 - `assets/templates/labnote-template.ipynb` - Jupyter notebook template
 - `assets/templates/labnote-template.md` - Markdown template
+- `assets/templates/notebook.typ` - Typst template for PDF export
 
 ### Commands
 
