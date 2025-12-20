@@ -22,7 +22,7 @@
 - References: `phases.md`, `best-practices.md`, `quality-standards.md`
 - STEERING.md: 全ファイル（.ipynb, .md, .pdf）を管理
 
-### lab-notebook (v0.2.0)
+### lab-notebook (v0.2.1)
 
 実験ごとのラボノートブック作成
 
@@ -31,7 +31,7 @@
 - Scripts: `scripts/notebook_to_pdf.sh <input.ipynb> [output.pdf]`
 - References: `notebook-guidelines.md`
 
-### experiment-report (v0.2.1)
+### experiment-report (v0.2.2)
 
 ラボノートからの統合レポート生成
 

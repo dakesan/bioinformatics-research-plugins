@@ -1,6 +1,6 @@
 {
   "name": "experiment-report",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Integrated report generation and improvement from lab notebook results",
   "keywords": ["report", "documentation", "synthesis", "refinement", "claim-evidence", "pdf-export", "typst"],
   "skills": [

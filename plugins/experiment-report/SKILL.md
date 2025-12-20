@@ -1,6 +1,6 @@
 ---
 name: experiment-report
-description: This skill should be used when generating integrated reports from lab notebooks, improving existing reports, or exporting reports to PDF. Triggered by requests like "generate report", "create summary", "refine report", "improve report", "レポートを作成", or "export report to PDF". Handles both initial generation (mechanical) and iterative refinement (AI-guided). For PDF export, use the shell script at scripts/export_pdf.sh.
+description: This skill should be used when generating integrated reports from lab notebooks, improving existing reports, or exporting reports to PDF/typst. Triggered by requests like "generate report", "create summary", "refine report", "improve report", "export to PDF", "typst出力", "PDFに変換", "レポートを作成", or "export report to PDF". For PDF export, use scripts/export_pdf.sh (pandoc + typst).
 ---
 
 # Experiment Report Management

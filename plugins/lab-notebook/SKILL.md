@@ -1,6 +1,6 @@
 ---
 name: lab-notebook
-description: This skill should be used when creating a new experiment, starting lab notebook, recording experimental results, documenting observations, or exporting notebooks to PDF. Triggered by requests like "start experiment", "create lab notebook", "record results", "新しい実験を始める", or "export notebook to PDF". For PDF export, use the shell script at scripts/notebook_to_pdf.sh.
+description: This skill should be used when creating a new experiment, starting lab notebook, recording experimental results, documenting observations, or exporting notebooks to PDF/typst. Triggered by requests like "start experiment", "create lab notebook", "record results", "新しい実験を始める", "export notebook to PDF", "typst出力", "PDFに変換", or "notebook to PDF". For PDF export, use scripts/notebook_to_pdf.sh (pandoc + typst).
 ---
 
 # Lab Notebook Management
