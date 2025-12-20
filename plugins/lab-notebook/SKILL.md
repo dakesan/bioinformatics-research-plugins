@@ -1,6 +1,6 @@
 ---
 name: lab-notebook
-description: This skill should be used when creating a new experiment, starting lab notebook, recording experimental results, or documenting observations. Triggered by requests like "start experiment", "create lab notebook", "record results", or "新しい実験を始める".
+description: This skill should be used when creating a new experiment, starting lab notebook, recording experimental results, documenting observations, or exporting notebooks to PDF. Triggered by requests like "start experiment", "create lab notebook", "record results", "新しい実験を始める", or "export notebook to PDF". For PDF export, use the shell script at scripts/notebook_to_pdf.sh.
 ---
 
 # Lab Notebook Management
@@ -331,6 +331,37 @@ When user returns with experimental results, engage in **interactive dialogue** 
 ### references/
 
 - `notebook-guidelines.md`: Detailed guidelines for each notebook section
+
+## PDF Export
+
+Export Jupyter notebooks to PDF using the provided shell script.
+
+**When to use**: When user requests PDF output from a notebook.
+
+**Script location**: `scripts/notebook_to_pdf.sh`
+
+**Usage**:
+```bash
+# Basic export (output: Exp01_analysis.pdf)
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh Exp01_analysis.ipynb
+
+# Custom output filename
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh Exp01_analysis.ipynb report.pdf
+
+# Exclude code cells (output only)
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh --no-input Exp01_analysis.ipynb
+
+# Keep intermediate markdown
+/path/to/plugins/lab-notebook/scripts/notebook_to_pdf.sh --keep-md Exp01_analysis.ipynb
+```
+
+**Workflow**: `.ipynb` → `.md` (nbconvert) → `.pdf` (pandoc + typst)
+
+**Prerequisites**: nbconvert, pandoc, typst
+```bash
+uv pip install nbconvert
+brew install pandoc typst
+```
 
 ## Usage Notes
 

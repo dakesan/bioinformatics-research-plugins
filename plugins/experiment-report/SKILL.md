@@ -1,6 +1,6 @@
 ---
 name: experiment-report
-description: This skill should be used when generating integrated reports from lab notebooks or improving existing reports. Triggered by requests like "generate report", "create summary", "refine report", "improve report", or "レポートを作成". Handles both initial generation (mechanical) and iterative refinement (AI-guided).
+description: This skill should be used when generating integrated reports from lab notebooks, improving existing reports, or exporting reports to PDF. Triggered by requests like "generate report", "create summary", "refine report", "improve report", "レポートを作成", or "export report to PDF". Handles both initial generation (mechanical) and iterative refinement (AI-guided). For PDF export, use the shell script at scripts/export_pdf.sh.
 ---
 
 # Experiment Report Management
@@ -259,30 +259,35 @@ fig.savefig('../results/exp01/fig01_heatmap.png', dpi=150, bbox_inches='tight')
 
 ### 6. PDF Export
 
-Export final reports to PDF using pandoc with typst engine.
+Export final reports to PDF using the provided shell script.
 
-**Prerequisites**:
-- pandoc (document converter)
-- typst (PDF engine)
+**When to use**: When user requests PDF output from a report.
 
-**Basic export command**:
+**Script location**: `scripts/export_pdf.sh`
+
+**Usage**:
 ```bash
-pandoc Report_Exp01-02_integrated.md -o report.pdf --pdf-engine=typst
+# Basic export (output: Report_Exp01-02_integrated.pdf)
+/path/to/plugins/experiment-report/scripts/export_pdf.sh Report_Exp01-02_integrated.md
+
+# Custom output filename
+/path/to/plugins/experiment-report/scripts/export_pdf.sh Report_Exp01-02_integrated.md custom_output.pdf
 ```
 
-**With typst template**:
-```bash
-pandoc Report_Exp01-02_integrated.md -o report.pdf \
-  --pdf-engine=typst \
-  --template=assets/templates/report.typ
-```
+The script automatically:
+- Detects template location (`assets/templates/report.typ`)
+- Validates prerequisites (pandoc, typst)
+- Reports file size on success
 
-**Template location**: `assets/templates/report.typ`
+**Prerequisites**: pandoc, typst
+```bash
+brew install pandoc typst
+```
 
 **Export workflow**:
 1. Complete and refine Markdown report
 2. Verify all figure paths are correct (relative paths)
-3. Run pandoc command from `notebook/report/` directory
+3. Run the shell script
 4. Review PDF output for formatting issues
 5. Iterate if needed
 
