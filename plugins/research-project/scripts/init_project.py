@@ -345,37 +345,108 @@ REPORT_TEMPLATE = """# Exp00_TEMPLATE_report
 [Links to additional figures]
 """
 
-GITIGNORE_TEMPLATE = """# Data
-data/raw/*
-!data/raw/.gitkeep
-
-# Results
-results/*
-!results/.gitkeep
-
-# Python
+GITIGNORE_TEMPLATE = """# Python
 __pycache__/
 *.py[cod]
 *$py.class
-.ipynb_checkpoints/
-
-# Environment
-.env
-.venv
-env/
+*.so
+.Python
+.venv/
 venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# Data (exclude raw data to avoid large files)
+data/raw/
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
 """
+
+README_TEMPLATE = """# {project_name}
+
+## Overview
+
+[TODO: Describe your research project]
+
+## Research Question
+
+[TODO: Define your main research question]
+
+## Structure
+
+```
+{project_name}/
+├── STEERING.md       # Project status & navigation
+├── notebook/
+│   ├── tasks.md      # Experiment progress tracking
+│   ├── analysis/     # Exploratory analysis
+│   ├── labnote/      # Individual experiments
+│   ├── report/       # Integrated reports
+│   └── knowledge/    # Reusable procedures
+├── data/
+│   ├── raw/          # Original data (gitignored)
+│   ├── processed/    # Cleaned data
+│   └── experimental/ # Experiment-specific data
+├── results/          # Analysis outputs
+├── reports/          # Final report outputs
+└── inbox/            # User input files
+```
+
+## Getting Started
+
+1. Edit `STEERING.md` to define your research question
+2. Create experiments with `/research-exp`
+3. Generate reports with `/research-report`
+
+## Dependencies
+
+```bash
+uv sync
+```
+"""
+
+PYPROJECT_TEMPLATE = """[project]
+name = "{project_name}"
+version = "0.1.0"
+description = "[TODO: Project description]"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "jupyter>=1.0.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+]
+"""
+
+MAIN_PY_TEMPLATE = '''"""
+{project_name} - Entry point
+"""
+
+
+def main():
+    """Main entry point."""
+    print("Hello from {project_name}")
+
+
+if __name__ == "__main__":
+    main()
+'''
 
 
 def init_project(path):
@@ -393,16 +464,23 @@ def init_project(path):
     print(f"🚀 Initializing research project at: {project_dir}")
     print()
 
+    # Get project name from directory
+    project_name = project_dir.name
+
     # Create directory structure
     directories = [
         project_dir,
+        project_dir / "notebook" / "analysis",
         project_dir / "notebook" / "labnote",
         project_dir / "notebook" / "report",
         project_dir / "notebook" / "knowledge",
         project_dir / "inbox",
         project_dir / "inbox" / "archive",
         project_dir / "data" / "raw",
+        project_dir / "data" / "processed",
+        project_dir / "data" / "experimental",
         project_dir / "results",
+        project_dir / "reports",
     ]
 
     for directory in directories:
@@ -417,13 +495,18 @@ def init_project(path):
     # Create files
     files = {
         project_dir / "STEERING.md": STEERING_TEMPLATE,
+        project_dir / "README.md": README_TEMPLATE.format(project_name=project_name),
+        project_dir / "pyproject.toml": PYPROJECT_TEMPLATE.format(project_name=project_name),
+        project_dir / "main.py": MAIN_PY_TEMPLATE.format(project_name=project_name),
+        project_dir / ".gitignore": GITIGNORE_TEMPLATE,
         project_dir / "notebook" / "tasks.md": TASKS_TEMPLATE,
         project_dir / "notebook" / "labnote" / "Exp00_TEMPLATE_labnote.ipynb": LABNOTE_JUPYTER_TEMPLATE,
         project_dir / "notebook" / "labnote" / "Exp00_TEMPLATE_labnote.md": LABNOTE_MD_TEMPLATE,
         project_dir / "notebook" / "report" / "Exp00_TEMPLATE_report.md": REPORT_TEMPLATE,
-        project_dir / ".gitignore": GITIGNORE_TEMPLATE,
-        project_dir / "data" / "raw" / ".gitkeep": "",
         project_dir / "results" / ".gitkeep": "",
+        project_dir / "reports" / ".gitkeep": "",
+        project_dir / "data" / "processed" / ".gitkeep": "",
+        project_dir / "data" / "experimental" / ".gitkeep": "",
     }
 
     for file_path, content in files.items():

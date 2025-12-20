@@ -126,11 +126,51 @@ Exp01_rnaseq-analysis_2025-01-15.ipynb
 Exp02_protein-quantification_2025-01-20.md
 ```
 
-Directory structure:
-- `data/raw/`: Original unprocessed data (never modify)
-- `results/`: Analysis outputs (reproducible from code)
+### Project Directory Structure
+
+Standard structure created by `/research-init`:
+
+```
+project/
+├── STEERING.md                    # Project status & navigation
+├── README.md                      # Project overview
+├── .gitignore                     # Excludes data/raw/
+├── pyproject.toml                 # Python dependencies (uv)
+├── main.py                        # Entry point
+├── notebook/
+│   ├── tasks.md                   # Experiment progress tracking
+│   ├── analysis/                  # Exploratory analysis scripts
+│   ├── labnote/                   # Individual experiments
+│   │   ├── Exp00_TEMPLATE_labnote.ipynb
+│   │   ├── Exp00_TEMPLATE_labnote.md
+│   │   └── Exp##_*.ipynb or *.md  # Actual experiments
+│   ├── report/                    # Integrated analyses (drafts)
+│   │   ├── Exp00_TEMPLATE_report.md
+│   │   └── Exp##_*.md             # Actual reports
+│   └── knowledge/                 # Reusable procedures
+├── data/
+│   ├── raw/                       # Original data (never modify, gitignored)
+│   ├── processed/                 # Cleaned/transformed data
+│   └── experimental/              # Experiment-specific data files
+├── results/                       # Analysis outputs
+│   └── exp##/                     # Per-experiment outputs
+├── reports/                       # Final report outputs (PDF, etc.)
+└── inbox/                         # User input files
+    └── archive/                   # Processed inbox items
+```
+
+Directory purposes:
+- `data/raw/`: Original unprocessed data (never modify, gitignored)
+- `data/processed/`: Cleaned and transformed data
+- `data/experimental/`: Experiment-specific data files
+- `results/`: Analysis outputs organized by experiment (exp##/)
+- `reports/`: Final report outputs (PDF exports, etc.)
+- `notebook/analysis/`: Exploratory analysis and ad-hoc scripts
 - `notebook/labnote/`: Individual experiments
-- `notebook/report/`: Integrated analyses
+- `notebook/report/`: Integrated analyses (draft reports)
+- `notebook/knowledge/`: Reusable procedures and protocols
+- `inbox/`: Memos, meeting notes, external input
+- `inbox/archive/`: Processed and filed inbox items
 
 ### Figure Management
 

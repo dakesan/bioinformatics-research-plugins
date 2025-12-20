@@ -117,20 +117,24 @@ After initialization, your project will have this structure:
 
 ```
 your-project/
-├── STEERING.md       # Current status & navigation (dynamic)
+├── STEERING.md       # Current status & navigation
+├── README.md         # Project overview
+├── pyproject.toml    # Python dependencies (uv)
+├── main.py           # Entry point
 ├── notebook/
 │   ├── tasks.md      # Experiment progress tracking
+│   ├── analysis/     # Exploratory analysis scripts
 │   ├── knowledge/    # Reusable procedures
 │   ├── labnote/      # Exp##_*.md or *.ipynb
 │   └── report/       # Exp##_*.md (integrated reports)
-├── results/          # Output files (gitignored)
-├── data/raw/         # Raw data (gitignored)
+├── data/
+│   ├── raw/          # Original data (gitignored)
+│   ├── processed/    # Cleaned/transformed data
+│   └── experimental/ # Experiment-specific data
+├── results/          # Analysis outputs (exp##/)
+├── reports/          # Final report outputs (PDF, etc.)
 └── inbox/            # User input files (memos, meeting notes)
 ```
-
-## Development
-
-This marketplace is designed to work with [BItemplate](https://github.com/dakesan/BItemplate), a bioinformatics analysis template repository.
 
 ## License
 
