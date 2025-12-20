@@ -1,8 +1,8 @@
 {
   "name": "research-project",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Project steering management with initialization, phase control, and best practices",
-  "keywords": ["project", "steering", "research", "management", "best-practices", "init-project-path"],
+  "keywords": ["project", "steering", "research", "management", "best-practices", "init-project-path", "file-tracking"],
   "skills": [
     {
       "name": "research-project",

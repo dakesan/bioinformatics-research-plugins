@@ -12,14 +12,15 @@
 
 ## Plugins
 
-### research-project (v0.3.0)
+### research-project (v0.3.1)
 
-プロジェクト管理とフェーズ制御
+プロジェクト管理とフェーズ制御、全ファイルトラッキング
 
 - Skills: `research-project`
 - Commands: `/research-init`, `/research-status`
 - Scripts: `scripts/init_project.py --path <target>`
 - References: `phases.md`, `best-practices.md`, `quality-standards.md`
+- STEERING.md: 全ファイル（.ipynb, .md, .pdf）を管理
 
 ### lab-notebook (v0.2.0)
 
