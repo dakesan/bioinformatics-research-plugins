@@ -146,6 +146,7 @@ For improving existing reports:
 ### Scripts
 
 - `scripts/init_report.py` - Report generation script (executable)
+- `scripts/export_pdf.sh` - PDF export script using pandoc + typst
 
 ### Commands
 
@@ -202,19 +203,27 @@ Following research-project quality-standards.md:
 
 ### PDF Export
 
-Export finalized reports to PDF:
+Export finalized reports to PDF using the provided script:
 
 ```bash
-# Basic export
-pandoc Report_Exp01-02_analysis.md -o report.pdf --pdf-engine=typst
+# Basic export (output: Report_Exp01-02_analysis.pdf)
+/path/to/plugins/experiment-report/scripts/export_pdf.sh Report_Exp01-02_analysis.md
 
-# With template
-pandoc Report_Exp01-02_analysis.md -o report.pdf \
-  --pdf-engine=typst \
-  --template=assets/templates/report.typ
+# Custom output filename
+/path/to/plugins/experiment-report/scripts/export_pdf.sh Report_Exp01-02_analysis.md custom_output.pdf
 ```
 
-Prerequisites: pandoc, typst
+The script automatically:
+- Detects template location (`assets/templates/report.typ`)
+- Validates prerequisites (pandoc, typst)
+- Reports file size on success
+
+**Prerequisites**: pandoc, typst
+
+```bash
+# Install prerequisites
+brew install pandoc typst
+```
 
 ### Refinement Tips
 

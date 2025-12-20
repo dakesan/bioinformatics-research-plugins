@@ -19,9 +19,18 @@
 - The `--path` argument specifies the target project directory where structure will be created
 - Example: `python /Users/oodakemac/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/research-project/scripts/init_project.py --path /path/to/target/project`
 
-### experiment-report plugin - v0.2.0
+### experiment-report plugin - v0.2.1
 
-Previous release with similar path execution fixes.
+**Release Date**: Dec 21, 2025
+
+**Changes**:
+- Added `scripts/export_pdf.sh` for PDF export using pandoc + typst
+- Updated README.md with script usage documentation
+- Added "typst" to plugin keywords
+
+**Notes**:
+- The bash script simplifies PDF export by auto-detecting template and validating prerequisites
+- Usage: `/path/to/plugins/experiment-report/scripts/export_pdf.sh <input.md> [output.pdf]`
 
 ## Coding Rules
 
