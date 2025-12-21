@@ -1,4 +1,4 @@
-// Simple Scientific Report Template for pandoc + typst
+// Scientific Report Template for pandoc + typst
 // Usage: pandoc report.md -o report.pdf --pdf-engine=typst --template=report.typ
 
 // Page settings
@@ -94,13 +94,13 @@
   #v(2cm)
   #text(size: 20pt, weight: "bold")[$title$]
   #v(1cm)
-  $if(author)$
+$if(author)$
   #text(size: 12pt)[$for(author)$$author$$sep$, $endfor$]
   #v(0.5em)
-  $endif$
-  $if(date)$
+$endif$
+$if(date)$
   #text(size: 11pt, fill: gray)[$date$]
-  $endif$
+$endif$
   #v(1cm)
 ]
 

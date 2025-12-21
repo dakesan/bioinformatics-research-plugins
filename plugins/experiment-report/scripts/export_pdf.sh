@@ -104,7 +104,7 @@ main() {
     fi
     echo ""
 
-    # Run pandoc
+    # Run pandoc with typst engine
     if [ -n "$TEMPLATE_PATH" ]; then
         pandoc "$input_file" \
             -o "$output_file" \

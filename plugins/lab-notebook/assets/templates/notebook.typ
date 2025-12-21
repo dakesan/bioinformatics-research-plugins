@@ -96,13 +96,13 @@
   #v(1cm)
   #text(size: 18pt, weight: "bold")[$title$]
   #v(0.5cm)
-  $if(author)$
+$if(author)$
   #text(size: 11pt)[$for(author)$$author$$sep$, $endfor$]
   #v(0.3em)
-  $endif$
-  $if(date)$
+$endif$
+$if(date)$
   #text(size: 10pt, fill: gray)[$date$]
-  $endif$
+$endif$
   #v(0.5cm)
 ]
 
