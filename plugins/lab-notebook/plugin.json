@@ -1,6 +1,6 @@
 {
   "name": "lab-notebook",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Lab notebook (Jupyter/Markdown) creation and management for individual experiments",
   "keywords": ["lab-notebook", "experiment", "jupyter", "documentation", "pdf-export", "typst"],
   "skills": [
@@ -13,6 +13,10 @@
     {
       "name": "research-exp",
       "path": "commands/research-exp.md"
+    },
+    {
+      "name": "notebook-pdf",
+      "path": "commands/notebook-pdf.md"
     }
   ]
 }
