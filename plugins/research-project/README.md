@@ -61,10 +61,10 @@ Usage:
 
   **Usage**:
   ```bash
-  python /Users/oodakemac/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/research-project/scripts/init_project.py --path /path/to/target/project
+  python "${CLAUDE_PLUGIN_ROOT}/scripts/init_project.py" --path /path/to/target/project
   ```
 
-  **Important**: Execute with absolute path. The `--path` argument specifies the target project directory.
+  **Important**: Use `${CLAUDE_PLUGIN_ROOT}` to reference the plugin's installation directory. The `--path` argument specifies the target project directory.
 
 ### References
 

@@ -12,7 +12,7 @@
 
 ## Plugins
 
-### research-project (v0.4.0)
+### research-project (v0.4.1)
 
 プロジェクト管理とフェーズ制御、全ファイルトラッキング
 
@@ -22,7 +22,7 @@
 - References: `phases.md`, `best-practices.md`, `quality-standards.md`
 - STEERING.md: 全ファイル（.ipynb, .md, .pdf）を管理
 
-### lab-notebook (v0.4.0)
+### lab-notebook (v0.4.1)
 
 実験ごとのラボノートブック作成
 
@@ -71,5 +71,5 @@
 
 ## Important Guidelines
 
-- ドキュメント内のスクリプトパスは絶対パスで記載
+- スクリプトパスは `${CLAUDE_PLUGIN_ROOT}` を使用（環境間の移植性確保）
 - references/ 配下のガイドラインは各プラグインの核となる知識

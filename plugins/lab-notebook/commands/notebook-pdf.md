@@ -7,7 +7,7 @@ Export a Jupyter notebook (.ipynb) to PDF format. Uses nbconvert → pandoc → 
 ## Usage
 
 ```bash
-/Users/oodakemac/ghq/github.com/dakesan/bioinformatics-research-plugins/plugins/lab-notebook/scripts/notebook_to_pdf.sh <input.ipynb> [output.pdf]
+"${CLAUDE_PLUGIN_ROOT}/scripts/notebook_to_pdf.sh" <input.ipynb> [output.pdf]
 ```
 
 ## Workflow
