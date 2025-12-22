@@ -1,22 +1,8 @@
 {
   "name": "experiment-report",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Integrated report generation and improvement from lab notebook results",
   "keywords": ["report", "documentation", "synthesis", "refinement", "claim-evidence", "pdf-export", "typst"],
-  "skills": [
-    {
-      "name": "experiment-report",
-      "path": "SKILL.md"
-    }
-  ],
-  "commands": [
-    {
-      "name": "research-report",
-      "path": "commands/research-report.md"
-    },
-    {
-      "name": "research-refine",
-      "path": "commands/research-refine.md"
-    }
-  ]
+  "skills": "./skills/",
+  "commands": "./commands/"
 }

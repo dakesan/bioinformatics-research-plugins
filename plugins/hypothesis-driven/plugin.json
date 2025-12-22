@@ -1,12 +1,7 @@
 {
   "name": "hypothesis-driven",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hypothesis refinement and validation after experiment execution",
   "keywords": ["hypothesis", "scientific-method", "research", "validation"],
-  "skills": [
-    {
-      "name": "hypothesis-driven",
-      "path": "SKILL.md"
-    }
-  ]
+  "skills": "./skills/"
 }

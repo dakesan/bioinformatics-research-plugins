@@ -12,7 +12,7 @@
 
 ## Plugins
 
-### research-project (v0.3.1)
+### research-project (v0.4.0)
 
 プロジェクト管理とフェーズ制御、全ファイルトラッキング
 
@@ -22,7 +22,7 @@
 - References: `phases.md`, `best-practices.md`, `quality-standards.md`
 - STEERING.md: 全ファイル（.ipynb, .md, .pdf）を管理
 
-### lab-notebook (v0.3.0)
+### lab-notebook (v0.4.0)
 
 実験ごとのラボノートブック作成
 
@@ -31,7 +31,7 @@
 - Scripts: `scripts/notebook_to_pdf.sh <input.ipynb> [output.pdf]`
 - References: `notebook-guidelines.md`
 
-### experiment-report (v0.2.2)
+### experiment-report (v0.3.0)
 
 ラボノートからの統合レポート生成
 
@@ -40,7 +40,7 @@
 - Scripts: `scripts/export_pdf.sh <input.md> [output.pdf]`
 - References: `mapping-rules.md`, `refinement-guide.md`
 
-### hypothesis-driven (v0.1.0)
+### hypothesis-driven (v0.2.0)
 
 仮説の検証と改良
 
@@ -48,7 +48,7 @@
 - Commands: なし
 - References: `validation-criteria.md`
 
-### inbox-processor (v0.2.0)
+### inbox-processor (v0.3.0)
 
 入力ファイルの分類と処理
 

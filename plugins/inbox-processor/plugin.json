@@ -1,18 +1,8 @@
 {
   "name": "inbox-processor",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Classification and processing of user input files (memos, meeting notes)",
   "keywords": ["inbox", "organization", "classification", "command"],
-  "skills": [
-    {
-      "name": "inbox-processor",
-      "path": "SKILL.md"
-    }
-  ],
-  "commands": [
-    {
-      "name": "inbox-process",
-      "path": "commands/inbox-process.md"
-    }
-  ]
+  "skills": "./skills/",
+  "commands": "./commands/"
 }
