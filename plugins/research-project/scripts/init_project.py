@@ -388,9 +388,16 @@ README_TEMPLATE = """# {project_name}
 ├── notebook/
 │   ├── tasks.md      # Experiment progress tracking
 │   ├── analysis/     # Exploratory analysis
-│   ├── labnote/      # Individual experiments
+│   ├── labnote/      # Individual experiments (ipynb)
 │   ├── report/       # Integrated reports
 │   └── knowledge/    # Reusable procedures
+├── src/
+│   ├── {exp_no}/     # Non-notebook code per experiment
+│   └── workflow/     # Snakemake pipelines
+│       ├── Snakefile
+│       ├── config.yaml
+│       ├── rules/    # Modular rule files
+│       └── scripts/  # Scripts called by workflow
 ├── data/
 │   ├── raw/          # Original data (gitignored)
 │   ├── processed/    # Cleaned data
@@ -434,19 +441,52 @@ dev-dependencies = [
 ]
 """
 
-MAIN_PY_TEMPLATE = '''"""
-{project_name} - Entry point
+SNAKEFILE_TEMPLATE = """# Snakemake workflow for {project_name}
+#
+# Usage:
+#   snakemake --cores 4
+#   snakemake --cores 4 --dry-run
+#
+# Configuration:
+#   Edit config.yaml to set parameters
+
+configfile: "config.yaml"
+
+
+rule all:
+    input:
+        # Define final outputs here
+        expand("results/{{sample}}_result.txt", sample=config["samples"])
+
+
+rule example_rule:
+    input:
+        "data/raw/{{sample}}.fastq"
+    output:
+        "results/{{sample}}_result.txt"
+    params:
+        param1=config.get("param1", "default")
+    threads: 4
+    shell:
+        \"\"\"
+        echo "Processing {{wildcards.sample}}" > {{output}}
+        \"\"\"
 """
 
+SNAKEMAKE_CONFIG_TEMPLATE = """# Snakemake configuration for {project_name}
 
-def main():
-    """Main entry point."""
-    print("Hello from {project_name}")
+# Sample list
+samples:
+  - sample1
+  - sample2
 
+# Parameters
+param1: "default_value"
 
-if __name__ == "__main__":
-    main()
-'''
+# Paths
+data_dir: "data/raw"
+results_dir: "results"
+"""
 
 
 def init_project(path):
@@ -481,6 +521,8 @@ def init_project(path):
         project_dir / "data" / "experimental",
         project_dir / "results",
         project_dir / "reports",
+        project_dir / "src" / "workflow" / "rules",
+        project_dir / "src" / "workflow" / "scripts",
     ]
 
     for directory in directories:
@@ -497,7 +539,6 @@ def init_project(path):
         project_dir / "STEERING.md": STEERING_TEMPLATE,
         project_dir / "README.md": README_TEMPLATE.format(project_name=project_name),
         project_dir / "pyproject.toml": PYPROJECT_TEMPLATE.format(project_name=project_name),
-        project_dir / "main.py": MAIN_PY_TEMPLATE.format(project_name=project_name),
         project_dir / ".gitignore": GITIGNORE_TEMPLATE,
         project_dir / "notebook" / "tasks.md": TASKS_TEMPLATE,
         project_dir / "notebook" / "labnote" / "Exp00_TEMPLATE_labnote.ipynb": LABNOTE_JUPYTER_TEMPLATE,
@@ -507,6 +548,11 @@ def init_project(path):
         project_dir / "reports" / ".gitkeep": "",
         project_dir / "data" / "processed" / ".gitkeep": "",
         project_dir / "data" / "experimental" / ".gitkeep": "",
+        project_dir / "src" / "workflow" / "Snakefile": SNAKEFILE_TEMPLATE.format(project_name=project_name),
+        project_dir / "src" / "workflow" / "config.yaml": SNAKEMAKE_CONFIG_TEMPLATE.format(project_name=project_name),
+        project_dir / "src" / "workflow" / "rules" / ".gitkeep": "",
+        project_dir / "src" / "workflow" / "scripts" / ".gitkeep": "",
+        project_dir / "src" / ".gitkeep": "",  # For future {exp_no}/ directories
     }
 
     for file_path, content in files.items():
