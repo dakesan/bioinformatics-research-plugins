@@ -12,7 +12,7 @@
 
 ## Plugins
 
-### research-project (v0.5.0)
+### research-project (v0.5.1)
 
 プロジェクト管理とフェーズ制御、全ファイルトラッキング
 

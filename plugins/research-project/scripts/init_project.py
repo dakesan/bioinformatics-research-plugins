@@ -392,7 +392,7 @@ README_TEMPLATE = """# {project_name}
 │   ├── report/       # Integrated reports
 │   └── knowledge/    # Reusable procedures
 ├── src/
-│   ├── {exp_no}/     # Non-notebook code per experiment
+│   ├── {{exp_no}}/     # Non-notebook code per experiment
 │   └── workflow/     # Snakemake pipelines
 │       ├── Snakefile
 │       ├── config.yaml
