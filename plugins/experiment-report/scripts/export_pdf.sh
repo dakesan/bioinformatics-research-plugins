@@ -105,13 +105,16 @@ main() {
     echo ""
 
     # Run pandoc with typst engine
+    # Note: -f markdown-grid_tables disables grid_tables to avoid typst conversion errors
     if [ -n "$TEMPLATE_PATH" ]; then
         pandoc "$input_file" \
+            -f markdown-grid_tables \
             -o "$output_file" \
             --pdf-engine=typst \
             --template="$TEMPLATE_PATH"
     else
         pandoc "$input_file" \
+            -f markdown-grid_tables \
             -o "$output_file" \
             --pdf-engine=typst
     fi
